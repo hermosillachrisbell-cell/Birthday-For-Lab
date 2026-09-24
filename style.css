@@ -1,0 +1,362 @@
+
+/* GENERAL DESIGN */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: linear-gradient(
+        135deg,
+        #ff9a9e,
+        #fad0c4,
+        #fbc2eb,
+        #e6c7ff
+    );
+    background-size: 300% 300%;
+    animation: backgroundMove 12s ease infinite;
+    color: #8b2346;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 25px 15px;
+    text-align: center;
+}
+
+/* MAIN BIRTHDAY CARD */
+
+.container {
+    width: 100%;
+    max-width: 700px;
+    padding: 35px 25px 20px;
+    background: rgba(255, 255, 255, 0.93);
+    border: 2px solid white;
+    border-radius: 28px;
+    box-shadow: 0 15px 45px rgba(160, 30, 70, 0.2);
+    position: relative;
+    z-index: 2;
+}
+
+/* SLIDES */
+
+.slide {
+    display: none;
+}
+
+.slide.active {
+    display: block;
+    animation: fadeIn 0.7s ease;
+}
+
+/* TEXT */
+
+h1 {
+    color: #e84375;
+    font-size: 34px;
+    margin: 15px 0;
+}
+
+h2 {
+    color: #d63384;
+    font-size: 23px;
+}
+
+p {
+    font-size: 17px;
+    line-height: 1.8;
+    margin: 18px 0;
+}
+
+.subtitle {
+    color: #b83280;
+    font-style: italic;
+}
+
+.emoji {
+    font-size: 65px;
+    margin: 20px 0;
+    animation: bounce 2s infinite;
+}
+
+.cake {
+    font-size: 90px;
+}
+
+.final-message {
+    font-size: 22px;
+    font-weight: bold;
+    color: #e84375;
+}
+
+/* BUTTONS */
+
+button {
+    background: linear-gradient(
+        135deg,
+        #ff4d88,
+        #e84393
+    );
+    color: white;
+    border: none;
+    border-radius: 30px;
+    padding: 13px 24px;
+    margin: 8px 4px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #d63384;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(232, 67, 147, 0.3);
+}
+
+button:focus-visible {
+    outline: 3px solid #8b2346;
+    outline-offset: 3px;
+}
+
+.secondary {
+    background: #f4c2d7;
+    color: #8b2346;
+}
+
+.secondary:hover {
+    background: #ffb0cf;
+}
+
+.buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+/* PHOTO GALLERY */
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin: 25px 0;
+}
+
+.gallery figure {
+    margin: 0;
+    background: #fff0f6;
+    padding: 8px;
+    border-radius: 15px;
+}
+
+.gallery img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 12px;
+    border: 3px solid #ff85a2;
+    transition: transform 0.3s;
+}
+
+.gallery img:hover {
+    transform: scale(1.04);
+}
+
+.gallery figcaption {
+    font-size: 12px;
+    margin-top: 8px;
+    color: #a83b70;
+}
+
+/* BIRTHDAY LETTER */
+
+.letter {
+    background: #fff0f6;
+    padding: 20px;
+    border-radius: 18px;
+    border: 2px dashed #ff85a2;
+    text-align: left;
+}
+
+.letter p {
+    font-size: 15px;
+}
+
+.signature {
+    text-align: right;
+    color: #e84375;
+    font-weight: bold;
+}
+
+/* MUSIC AND SLIDE COUNTER */
+
+.controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 25px;
+    padding-top: 15px;
+    border-top: 1px solid #ffd0e3;
+}
+
+#musicButton {
+    font-size: 13px;
+    padding: 10px 17px;
+}
+
+#counter {
+    font-size: 14px;
+    font-weight: bold;
+    color: #b83280;
+}
+
+/* FLOATING HEARTS */
+
+#hearts {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 3;
+}
+
+.heart {
+    position: absolute;
+    bottom: -40px;
+    animation: floatUp 6s linear forwards;
+}
+
+/* SURPRISE MESSAGE */
+
+.surprise {
+    color: #e84375;
+    font-size: 22px;
+    font-weight: bold;
+    animation: bounce 2s infinite;
+}
+
+/* ANIMATIONS */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes floatUp {
+    from {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+    }
+
+    to {
+        transform: translateY(-110vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+@keyframes backgroundMove {
+    0%, 100% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+/* MOBILE-FRIENDLY DESIGN */
+
+@media (max-width: 600px) {
+    body {
+        padding: 15px 10px;
+    }
+
+    .container {
+        padding: 25px 15px 15px;
+        border-radius: 20px;
+    }
+
+    h1 {
+        font-size: 27px;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+
+    p {
+        font-size: 15px;
+    }
+
+    .emoji {
+        font-size: 52px;
+    }
+
+    .gallery {
+        gap: 7px;
+    }
+
+    .gallery figure {
+        padding: 4px;
+    }
+
+    .gallery img {
+        height: 105px;
+    }
+
+    .gallery figcaption {
+        font-size: 10px;
+    }
+
+    .letter {
+        padding: 15px;
+    }
+
+    button {
+        font-size: 14px;
+        padding: 12px 18px;
+    }
+}
+
+@media (max-width: 380px) {
+    .gallery {
+        grid-template-columns: 1fr;
+        max-width: 220px;
+        margin: 20px auto;
+    }
+
+    .gallery img {
+        height: 170px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation: none !important;
+        transition: none !important;
+    }
+}

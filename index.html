@@ -1,0 +1,292 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <title>Happy 18th Birthday, Lab! ❤️</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="hearts" aria-hidden="true"></div>
+
+<main class="container">
+
+    <!-- SLIDE 1 -->
+    <section class="slide active">
+        <div class="emoji">🎂💗</div>
+        <h1>Happy 18th Birthday, Lab!</h1>
+        <p class="subtitle">A little surprise for my birthday boy</p>
+
+        <p>
+            Today is your special day!
+            I made this little birthday presentation
+            just for you. I hope it makes you smile.
+            Are you ready, Lab? 🥹❤️
+        </p>
+
+        <button onclick="nextSlide()">
+            Open Your Surprise 💌
+        </button>
+    </section>
+
+    <!-- SLIDE 2 -->
+    <section class="slide">
+        <div class="emoji">🥳🎈</div>
+        <h1>You're Finally 18!</h1>
+        <h2>Happy Birthday, Baby!</h2>
+
+        <p>
+            Welcome to another beautiful chapter
+            of your life! I hope your 18th birthday
+            brings you happiness, good health,
+            success and unforgettable memories.
+        </p>
+
+        <p>
+            Keep believing in yourself and
+            following your dreams. I'm so proud
+            of you, Lab! 💗
+        </p>
+
+        <div class="buttons">
+            <button class="secondary" onclick="prevSlide()">
+                Back
+            </button>
+            <button onclick="nextSlide()">
+                Next 💕
+            </button>
+        </div>
+    </section>
+
+    <!-- SLIDE 3 -->
+    <section class="slide">
+        <h1>Our Beautiful Memories 📸</h1>
+
+        <p>
+            Every picture has a story,
+            and these are some of my favorite
+            memories with you.
+        </p>
+
+        <div class="gallery">
+            <figure>
+                <img src="images/photo1.jpg"
+                     alt="Our first memory">
+                <figcaption>Our favorite moment 💗</figcaption>
+            </figure>
+
+            <figure>
+                <img src="images/photo2.jpg"
+                     alt="Our second memory">
+                <figcaption>Happy memories ❤️</figcaption>
+            </figure>
+
+            <figure>
+                <img src="images/photo3.jpg"
+                     alt="Our third memory">
+                <figcaption>More memories together 💕</figcaption>
+            </figure>
+        </div>
+
+        <p>
+            Here's to more laughter, adventures
+            and wonderful memories together!
+        </p>
+
+        <div class="buttons">
+            <button class="secondary" onclick="prevSlide()">
+                Back
+            </button>
+            <button onclick="nextSlide()">
+                Continue 💌
+            </button>
+        </div>
+    </section>
+
+    <!-- SLIDE 4 -->
+    <section class="slide">
+        <div class="emoji">💌</div>
+        <h1>A Letter for You</h1>
+
+        <div class="letter">
+            <p>To my Lab,</p>
+
+            <p>
+                Happy 18th birthday, baby!
+                Thank you for making me smile
+                and for being such a special
+                part of my life.
+            </p>
+
+            <p>
+                As you turn 18, I wish you
+                the courage to follow your dreams,
+                the strength to face challenges,
+                and countless reasons to smile.
+            </p>
+
+            <p>
+                I hope you enjoy every moment
+                of your special day. Always remember
+                how much you mean to me.
+            </p>
+
+            <p class="signature">
+                I love you, Lab! ❤️<br>
+                Your Lab
+            </p>
+        </div>
+
+        <div class="buttons">
+            <button class="secondary" onclick="prevSlide()">
+                Back
+            </button>
+            <button onclick="nextSlide()">
+                One Last Surprise 🎁
+            </button>
+        </div>
+    </section>
+
+    <!-- SLIDE 5 -->
+    <section class="slide">
+        <div class="emoji cake">🎂</div>
+        <h1>Happy 18th Birthday!</h1>
+        <h2>I Love You, Lab! ❤️</h2>
+
+        <p>
+            Make a wish, birthday boy!
+            May this year bring you beautiful
+            opportunities, exciting adventures
+            and so much happiness.
+        </p>
+
+        <p class="final-message">
+            18 years of being amazing! ✨
+        </p>
+
+        <button onclick="celebrate()">
+            Click for Your Surprise 🎊
+        </button>
+
+        <button class="secondary" onclick="restart()">
+            Watch Again ↻
+        </button>
+
+        <p id="surprise" class="surprise" aria-live="polite"></p>
+    </section>
+
+    <div class="controls">
+        <button id="musicButton"
+                onclick="toggleMusic()"
+                aria-pressed="false">
+            🎵 Play Music
+        </button>
+
+        <span id="counter">1 / 5</span>
+    </div>
+
+    <audio id="birthdayMusic" loop>
+        <source src="music/birthday.mp3"
+                type="audio/mpeg">
+    </audio>
+
+</main>
+
+<script>
+    let currentSlide = 0;
+
+    const slides = document.querySelectorAll(".slide");
+    const counter = document.getElementById("counter");
+    const music = document.getElementById("birthdayMusic");
+    const musicButton = document.getElementById("musicButton");
+
+    function showSlide(index) {
+        slides[currentSlide].classList.remove("active");
+
+        currentSlide = index;
+
+        slides[currentSlide].classList.add("active");
+        counter.textContent =
+            `${currentSlide + 1} / ${slides.length}`;
+    }
+
+    function nextSlide() {
+        if (currentSlide < slides.length - 1) {
+            showSlide(currentSlide + 1);
+        }
+    }
+
+    function prevSlide() {
+        if (currentSlide > 0) {
+            showSlide(currentSlide - 1);
+        }
+    }
+
+    function restart() {
+        document.getElementById("surprise").textContent = "";
+        showSlide(0);
+    }
+
+    function createHeart() {
+        if (window.matchMedia(
+            "(prefers-reduced-motion: reduce)"
+        ).matches) return;
+
+        const heart = document.createElement("span");
+        const emojis = ["❤️", "💕", "💗", "💖", "🌸"];
+
+        heart.className = "heart";
+        heart.textContent =
+            emojis[Math.floor(Math.random() * emojis.length)];
+
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.fontSize =
+            (16 + Math.random() * 20) + "px";
+
+        heart.style.animationDuration =
+            (4 + Math.random() * 3) + "s";
+
+        document.getElementById("hearts").appendChild(heart);
+
+        heart.addEventListener("animationend", () => {
+            heart.remove();
+        });
+    }
+
+    function celebrate() {
+        document.getElementById("surprise").textContent =
+            "SURPRISE! 🎉 I LOVE YOU, LAB! ❤️";
+
+        for (let i = 0; i < 40; i++) {
+            setTimeout(createHeart, i * 80);
+        }
+    }
+
+    async function toggleMusic() {
+        if (music.paused) {
+            try {
+                await music.play();
+                musicButton.textContent = "⏸ Pause Music";
+                musicButton.setAttribute("aria-pressed", "true");
+            } catch (error) {
+                musicButton.textContent = "Music unavailable";
+            }
+        } else {
+            music.pause();
+            musicButton.textContent = "🎵 Play Music";
+            musicButton.setAttribute("aria-pressed", "false");
+        }
+    }
+
+    if (!window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+    ).matches) {
+        setInterval(createHeart, 900);
+    }
+</script>
+
+</body>
+</html>
